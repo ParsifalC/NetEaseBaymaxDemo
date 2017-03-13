@@ -1,5 +1,10 @@
 # NetEaseBaymaxDemo
 原文：[大白健康系统--iOS APP运行时Crash自动修复系统](https://neyoufan.github.io/2017/01/13/ios/BayMax_HTSafetyGuard/)，看过原文后，觉得挺有意思的，是一个不错的Runtime实践用例。这个Repo是根据原文提供方案仿写的小Demo，仅做讨论研究讨论使用，期待官方早日完成测试开源SDK，学习下源码。**这里不讨论这种防护是否有必要，仅当学习练手之用。**
+## TODO
+- [ ] Unit Test
+- [ ] Bad Access 防护
+- [ ] UI Not On Main Thread 防护
+
 ## 关于仿写过程中网易Baymax的一些疑问：
 #### 1、Unrecognized Selector类型crash防护
 以下是我根据Baymax思路仿写的：
@@ -286,4 +291,4 @@
 }
 ```
 #### 7、野指针类型crash防护
-个人感觉这部分是最有意思的。
+个人感觉这部分是最有意思的。下周末再写。
