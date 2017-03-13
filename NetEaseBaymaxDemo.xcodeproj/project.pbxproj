@@ -21,7 +21,18 @@
 		90A4C6801E76966D00D3F0CF /* NSMutableArray+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C67F1E76966D00D3F0CF /* NSMutableArray+Baymax.m */; };
 		90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */; };
 		90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */; };
+		90A4C6911E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6901E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		90A4C6931E76C72A00D3F0CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 901BE8E91E740F54002F2798 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 901BE8F01E740F54002F2798;
+			remoteInfo = NetEaseBaymaxDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetEaseBaymaxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,10 +61,20 @@
 		90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Baymax.m"; sourceTree = "<group>"; };
 		90A4C6871E76BE6B00D3F0CF /* NSString+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Baymax.h"; sourceTree = "<group>"; };
 		90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Baymax.m"; sourceTree = "<group>"; };
+		90A4C68E1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetEaseBaymaxDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90A4C6901E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetEaseBaymaxDemoTests.m; sourceTree = "<group>"; };
+		90A4C6921E76C72A00D3F0CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		901BE8EE1E740F54002F2798 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90A4C68B1E76C72A00D3F0CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -67,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				901BE8F31E740F54002F2798 /* NetEaseBaymaxDemo */,
+				90A4C68F1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests */,
 				901BE8F21E740F54002F2798 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */,
+				90A4C68E1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +150,15 @@
 			name = Baymax;
 			sourceTree = "<group>";
 		};
+		90A4C68F1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				90A4C6901E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m */,
+				90A4C6921E76C72A00D3F0CF /* Info.plist */,
+			);
+			path = NetEaseBaymaxDemoTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,6 +179,24 @@
 			productReference = 901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		90A4C68D1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90A4C6971E76C72A00D3F0CF /* Build configuration list for PBXNativeTarget "NetEaseBaymaxDemoTests" */;
+			buildPhases = (
+				90A4C68A1E76C72A00D3F0CF /* Sources */,
+				90A4C68B1E76C72A00D3F0CF /* Frameworks */,
+				90A4C68C1E76C72A00D3F0CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90A4C6941E76C72A00D3F0CF /* PBXTargetDependency */,
+			);
+			name = NetEaseBaymaxDemoTests;
+			productName = NetEaseBaymaxDemoTests;
+			productReference = 90A4C68E1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -160,6 +210,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = QPY54Z9HV5;
 						ProvisioningStyle = Automatic;
+					};
+					90A4C68D1E76C72A00D3F0CF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = QPY54Z9HV5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 901BE8F01E740F54002F2798;
 					};
 				};
 			};
@@ -177,6 +233,7 @@
 			projectRoot = "";
 			targets = (
 				901BE8F01E740F54002F2798 /* NetEaseBaymaxDemo */,
+				90A4C68D1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -189,6 +246,13 @@
 				901BE9041E740F54002F2798 /* LaunchScreen.storyboard in Resources */,
 				901BE9011E740F54002F2798 /* Assets.xcassets in Resources */,
 				901BE8FF1E740F54002F2798 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90A4C68C1E76C72A00D3F0CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +277,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		90A4C68A1E76C72A00D3F0CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90A4C6911E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		90A4C6941E76C72A00D3F0CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 901BE8F01E740F54002F2798 /* NetEaseBaymaxDemo */;
+			targetProxy = 90A4C6931E76C72A00D3F0CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		901BE8FD1E740F54002F2798 /* Main.storyboard */ = {
@@ -347,6 +427,32 @@
 			};
 			name = Release;
 		};
+		90A4C6951E76C72A00D3F0CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QPY54Z9HV5;
+				INFOPLIST_FILE = NetEaseBaymaxDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Parsifal.NetEaseBaymaxDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetEaseBaymaxDemo.app/NetEaseBaymaxDemo";
+			};
+			name = Debug;
+		};
+		90A4C6961E76C72A00D3F0CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QPY54Z9HV5;
+				INFOPLIST_FILE = NetEaseBaymaxDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Parsifal.NetEaseBaymaxDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetEaseBaymaxDemo.app/NetEaseBaymaxDemo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -367,6 +473,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		90A4C6971E76C72A00D3F0CF /* Build configuration list for PBXNativeTarget "NetEaseBaymaxDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90A4C6951E76C72A00D3F0CF /* Debug */,
+				90A4C6961E76C72A00D3F0CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
