@@ -1,0 +1,374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		901BE8F61E740F54002F2798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE8F51E740F54002F2798 /* main.m */; };
+		901BE8F91E740F54002F2798 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE8F81E740F54002F2798 /* AppDelegate.m */; };
+		901BE8FC1E740F54002F2798 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE8FB1E740F54002F2798 /* ViewController.m */; };
+		901BE8FF1E740F54002F2798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 901BE8FD1E740F54002F2798 /* Main.storyboard */; };
+		901BE9011E740F54002F2798 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 901BE9001E740F54002F2798 /* Assets.xcassets */; };
+		901BE9041E740F54002F2798 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 901BE9021E740F54002F2798 /* LaunchScreen.storyboard */; };
+		901BE90D1E742114002F2798 /* NSObject+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE90C1E742114002F2798 /* NSObject+Baymax.m */; };
+		90A4C66D1E75327D00D3F0CF /* CPKVODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */; };
+		90A4C6761E7664E900D3F0CF /* NSNotificationCenter+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6751E7664E900D3F0CF /* NSNotificationCenter+Baymax.m */; };
+		90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6781E7671DE00D3F0CF /* NSTimer+Baymax.m */; };
+		90A4C67C1E76749700D3F0CF /* CPStubTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C67B1E76749700D3F0CF /* CPStubTarget.m */; };
+		90A4C6801E76966D00D3F0CF /* NSMutableArray+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C67F1E76966D00D3F0CF /* NSMutableArray+Baymax.m */; };
+		90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */; };
+		90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetEaseBaymaxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		901BE8F51E740F54002F2798 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		901BE8F71E740F54002F2798 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		901BE8F81E740F54002F2798 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		901BE8FA1E740F54002F2798 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		901BE8FB1E740F54002F2798 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		901BE8FE1E740F54002F2798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		901BE9001E740F54002F2798 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		901BE9031E740F54002F2798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		901BE9051E740F54002F2798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		901BE90B1E742114002F2798 /* NSObject+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Baymax.h"; sourceTree = "<group>"; };
+		901BE90C1E742114002F2798 /* NSObject+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Baymax.m"; sourceTree = "<group>"; };
+		90A4C66B1E75327D00D3F0CF /* CPKVODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPKVODelegate.h; sourceTree = "<group>"; };
+		90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPKVODelegate.m; sourceTree = "<group>"; };
+		90A4C6741E7664E900D3F0CF /* NSNotificationCenter+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Baymax.h"; sourceTree = "<group>"; };
+		90A4C6751E7664E900D3F0CF /* NSNotificationCenter+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Baymax.m"; sourceTree = "<group>"; };
+		90A4C6771E7671DE00D3F0CF /* NSTimer+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Baymax.h"; sourceTree = "<group>"; };
+		90A4C6781E7671DE00D3F0CF /* NSTimer+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Baymax.m"; sourceTree = "<group>"; };
+		90A4C67A1E76749700D3F0CF /* CPStubTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPStubTarget.h; sourceTree = "<group>"; };
+		90A4C67B1E76749700D3F0CF /* CPStubTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPStubTarget.m; sourceTree = "<group>"; };
+		90A4C67E1E76966D00D3F0CF /* NSMutableArray+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Baymax.h"; sourceTree = "<group>"; };
+		90A4C67F1E76966D00D3F0CF /* NSMutableArray+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Baymax.m"; sourceTree = "<group>"; };
+		90A4C6811E7697E500D3F0CF /* NSArray+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Baymax.h"; sourceTree = "<group>"; };
+		90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Baymax.m"; sourceTree = "<group>"; };
+		90A4C6871E76BE6B00D3F0CF /* NSString+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Baymax.h"; sourceTree = "<group>"; };
+		90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Baymax.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		901BE8EE1E740F54002F2798 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		901BE8E81E740F54002F2798 = {
+			isa = PBXGroup;
+			children = (
+				901BE8F31E740F54002F2798 /* NetEaseBaymaxDemo */,
+				901BE8F21E740F54002F2798 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		901BE8F21E740F54002F2798 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		901BE8F31E740F54002F2798 /* NetEaseBaymaxDemo */ = {
+			isa = PBXGroup;
+			children = (
+				90A4C67D1E76965500D3F0CF /* Baymax */,
+				901BE8F71E740F54002F2798 /* AppDelegate.h */,
+				901BE8F81E740F54002F2798 /* AppDelegate.m */,
+				901BE8FA1E740F54002F2798 /* ViewController.h */,
+				901BE8FB1E740F54002F2798 /* ViewController.m */,
+				901BE8FD1E740F54002F2798 /* Main.storyboard */,
+				901BE9001E740F54002F2798 /* Assets.xcassets */,
+				901BE9021E740F54002F2798 /* LaunchScreen.storyboard */,
+				901BE9051E740F54002F2798 /* Info.plist */,
+				901BE8F41E740F54002F2798 /* Supporting Files */,
+			);
+			path = NetEaseBaymaxDemo;
+			sourceTree = "<group>";
+		};
+		901BE8F41E740F54002F2798 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				901BE8F51E740F54002F2798 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		90A4C67D1E76965500D3F0CF /* Baymax */ = {
+			isa = PBXGroup;
+			children = (
+				901BE90B1E742114002F2798 /* NSObject+Baymax.h */,
+				901BE90C1E742114002F2798 /* NSObject+Baymax.m */,
+				90A4C66B1E75327D00D3F0CF /* CPKVODelegate.h */,
+				90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */,
+				90A4C6741E7664E900D3F0CF /* NSNotificationCenter+Baymax.h */,
+				90A4C6751E7664E900D3F0CF /* NSNotificationCenter+Baymax.m */,
+				90A4C6771E7671DE00D3F0CF /* NSTimer+Baymax.h */,
+				90A4C6781E7671DE00D3F0CF /* NSTimer+Baymax.m */,
+				90A4C67A1E76749700D3F0CF /* CPStubTarget.h */,
+				90A4C67B1E76749700D3F0CF /* CPStubTarget.m */,
+				90A4C67E1E76966D00D3F0CF /* NSMutableArray+Baymax.h */,
+				90A4C67F1E76966D00D3F0CF /* NSMutableArray+Baymax.m */,
+				90A4C6811E7697E500D3F0CF /* NSArray+Baymax.h */,
+				90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */,
+				90A4C6871E76BE6B00D3F0CF /* NSString+Baymax.h */,
+				90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */,
+			);
+			name = Baymax;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		901BE8F01E740F54002F2798 /* NetEaseBaymaxDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 901BE9081E740F54002F2798 /* Build configuration list for PBXNativeTarget "NetEaseBaymaxDemo" */;
+			buildPhases = (
+				901BE8ED1E740F54002F2798 /* Sources */,
+				901BE8EE1E740F54002F2798 /* Frameworks */,
+				901BE8EF1E740F54002F2798 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetEaseBaymaxDemo;
+			productName = NetEaseBaymaxDemo;
+			productReference = 901BE8F11E740F54002F2798 /* NetEaseBaymaxDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		901BE8E91E740F54002F2798 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Parsifal;
+				TargetAttributes = {
+					901BE8F01E740F54002F2798 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = QPY54Z9HV5;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 901BE8EC1E740F54002F2798 /* Build configuration list for PBXProject "NetEaseBaymaxDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 901BE8E81E740F54002F2798;
+			productRefGroup = 901BE8F21E740F54002F2798 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				901BE8F01E740F54002F2798 /* NetEaseBaymaxDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		901BE8EF1E740F54002F2798 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				901BE9041E740F54002F2798 /* LaunchScreen.storyboard in Resources */,
+				901BE9011E740F54002F2798 /* Assets.xcassets in Resources */,
+				901BE8FF1E740F54002F2798 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		901BE8ED1E740F54002F2798 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90A4C6801E76966D00D3F0CF /* NSMutableArray+Baymax.m in Sources */,
+				90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */,
+				90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */,
+				90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */,
+				90A4C67C1E76749700D3F0CF /* CPStubTarget.m in Sources */,
+				901BE8FC1E740F54002F2798 /* ViewController.m in Sources */,
+				901BE90D1E742114002F2798 /* NSObject+Baymax.m in Sources */,
+				901BE8F91E740F54002F2798 /* AppDelegate.m in Sources */,
+				90A4C66D1E75327D00D3F0CF /* CPKVODelegate.m in Sources */,
+				90A4C6761E7664E900D3F0CF /* NSNotificationCenter+Baymax.m in Sources */,
+				901BE8F61E740F54002F2798 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		901BE8FD1E740F54002F2798 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				901BE8FE1E740F54002F2798 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		901BE9021E740F54002F2798 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				901BE9031E740F54002F2798 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		901BE9061E740F54002F2798 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		901BE9071E740F54002F2798 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		901BE9091E740F54002F2798 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QPY54Z9HV5;
+				INFOPLIST_FILE = NetEaseBaymaxDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Parsifal.NetEaseBaymaxDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		901BE90A1E740F54002F2798 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QPY54Z9HV5;
+				INFOPLIST_FILE = NetEaseBaymaxDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Parsifal.NetEaseBaymaxDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		901BE8EC1E740F54002F2798 /* Build configuration list for PBXProject "NetEaseBaymaxDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				901BE9061E740F54002F2798 /* Debug */,
+				901BE9071E740F54002F2798 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		901BE9081E740F54002F2798 /* Build configuration list for PBXNativeTarget "NetEaseBaymaxDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				901BE9091E740F54002F2798 /* Debug */,
+				901BE90A1E740F54002F2798 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 901BE8E91E740F54002F2798 /* Project object */;
+}
