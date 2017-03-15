@@ -1,7 +1,7 @@
 # NetEaseBaymaxDemo
 原文：[大白健康系统--iOS APP运行时Crash自动修复系统](https://neyoufan.github.io/2017/01/13/ios/BayMax_HTSafetyGuard/)，看过原文后，觉得挺有意思的，是一个不错的Runtime实践用例。这个Repo是根据原文提供方案仿写的小Demo，仅做讨论研究讨论使用，期待官方早日完成测试开源SDK，学习下源码。**这里不讨论这种防护是否有必要，仅当学习练手之用。**
 ## TODO
-- [ ] Unit Test
+- [x] Unit Test
 - [ ] Bad Access 防护
 - [ ] UI Not On Main Thread 防护
 - [ ] Refactor Code
