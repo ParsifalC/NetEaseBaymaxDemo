@@ -4,6 +4,7 @@
 - [ ] Unit Test
 - [ ] Bad Access 防护
 - [ ] UI Not On Main Thread 防护
+- [ ] Refactor Code
 
 ## 关于仿写过程中网易Baymax的一些疑问：
 #### 1、Unrecognized Selector类型crash防护
