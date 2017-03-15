@@ -32,6 +32,19 @@
 
 2）关于桩类对象的释放问题，通过手动`objc_registerClassPair:`创建的类对象，只能通过`objc_disposeClassPair:`手动释放。这里的类对象，是否直到程序结束由系统回收，运行过程中不做释放呢（虽然占据内存也不是很大）？或者再复写`dealloc`方法，从这里做回收（这样似乎也没有必要，如果出现多次crash，就会有反复创建和销毁操作）？
 
+3）Swizzle`forwardingTargetForSelector`这个方法后，从Log上看，在App启动后，会有多次的转发，我猜测这个现象与上面那个问题一致，这是系统的一些私有类，产生的异常系统自己处理掉了，那么这种情况Baymax目前是怎么处理的（而且Swizzle后会造成XCTest无法正常进行测试）？Log如下：
+
+
+```ruby
+2017-03-15 18:55:37.168 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash getServerAnswerForQuestion:reply:
+2017-03-15 18:55:37.648 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash startArbitrationWithExpectedState:hostingPIDs:withSuppression:onConnected:
+2017-03-15 18:55:37.678 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash _setTextColor:
+2017-03-15 18:55:37.678 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash _setMagnifierLineColor:
+2017-03-15 18:55:37.678 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash _setTextColor:
+2017-03-15 18:55:37.679 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash _setMagnifierLineColor:
+2017-03-15 18:55:38.003 NetEaseBaymaxDemo[77401:4583918] catch unrecognize selector crash setPresentationContextPrefersCancelActionShown:
+```
+
 
 #### 2、KVO类型crash防护
 关于KVO部分，Facebook之前有出过小工具，思路与这个有点类似，都是通过中间层来转发消息，[KVOController](https://github.com/facebook/KVOController)。根据原文方案，这里也是通过增加`CPKVODelegate`作代理，转发消息实现。为每个被观察对象添加一个代理，以这个代理作为实际的观察者，所有的消息都会发往这个观察者然后再处理派发。主要针对以下三种crash情况：
