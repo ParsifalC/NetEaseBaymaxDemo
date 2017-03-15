@@ -40,6 +40,8 @@
 - 移除一个非观察者：`Cannot remove an observer <...> for the key path "keypath" from <...> because it is not registered as an observer.`
 - 观察者释放后，未从观察者KVO中移除：`message sent to deallocated instance`
 - 被观察者释放后，未移除其所有观察者：`deallocated while key value observers were still registered with it.`
+
+
 这一部分我的疑问是：
 
 1）由于Hook的是`NSObject`这个基类，系统内部的一些实现也是会使用KVO。在写这个Demo的时候，我也发现，系统在启动阶段也会调用几次的`addObserver..`方法。那么我的疑问是，这样做转发后，在实际运用中，如果大范围的使用KVO，损失的效率会明显吗？希望到时候能分享下实践过程遇到的坑。
