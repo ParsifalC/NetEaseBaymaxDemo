@@ -27,7 +27,7 @@
 有以下两个疑问：
 
 
-1）文中提到`注意如果对象的类本身如果重写了forwardInvocation方法的话，就不应该对forwardingTargetForSelector进行重写了，否则会影响到该类型的对象原本的消息转发流程。`这部分似乎并不能在这里通过代码判断。`[self respondsToSelector:@selector(forwardInvocation:)]`返回的始终是YES。Baymax目前是通过什么方式来排除这种情况的呢？
+1）文中提到`注意如果对象的类本身如果重写了forwardInvocation方法的话，就不应该对forwardingTargetForSelector进行重写了，否则会影响到该类型的对象原本的消息转发流程。`这部分似乎并不能在这里通过代码判断。`[self respondsToSelector:@selector(forwardInvocation:)]`返回的始终是YES。因为`NSObject`默认的`forward​Invocation:​`实现是调用`does​Not​Recognize​Selector:​`。Baymax目前是通过什么方式来排除这种情况的呢？
 
 
 2）关于桩类对象的释放问题，通过手动`objc_registerClassPair:`创建的类对象，只能通过`objc_disposeClassPair:`手动释放。这里的类对象，是否直到程序结束由系统回收，运行过程中不做释放呢（虽然占据内存也不是很大）？或者再复写`dealloc`方法，从这里做回收（这样似乎也没有必要，如果出现多次crash，就会有反复创建和销毁操作）？
