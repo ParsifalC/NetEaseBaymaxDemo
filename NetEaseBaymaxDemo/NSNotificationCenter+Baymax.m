@@ -23,6 +23,7 @@
                     object:(id)anObject {
     NSObject *obj = observer;
     obj.didRegisteredNotificationCenter = YES;
+    
     [self baymax_addObserver:observer
                     selector:aSelector
                         name:aName

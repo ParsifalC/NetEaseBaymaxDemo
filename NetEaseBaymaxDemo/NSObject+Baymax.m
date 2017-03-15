@@ -13,7 +13,6 @@
 char * const kBaymaxProtectorName = "kBaymaxProtector";
 
 void baymaxProtected(id self, SEL sel) {
-    NSLog(@"catch unrecognize selector crash");
 }
 
 @implementation NSObject (Baymax)
@@ -22,7 +21,7 @@ void baymaxProtected(id self, SEL sel) {
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleInstanceMethodWithOriginSel:@selector(forwardingTargetForSelector:) swizzledSel:@selector(baymax_forwardingTargetForSelector:)];
+//        [self swizzleInstanceMethodWithOriginSel:@selector(forwardingTargetForSelector:) swizzledSel:@selector(baymax_forwardingTargetForSelector:)];
         [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
         [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
         [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
@@ -75,6 +74,7 @@ void baymaxProtected(id self, SEL sel) {
 
 // MARK: Unrecognize Selector Protected
 - (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
+    NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
     Class baymaxProtector = objc_getClass(kBaymaxProtectorName);
     
     if (!baymaxProtector) {
