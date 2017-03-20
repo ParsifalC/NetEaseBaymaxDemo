@@ -50,6 +50,8 @@
 
 2）关于桩类对象的释放问题，通过手动`objc_registerClassPair:`创建的类对象，只能通过`objc_disposeClassPair:`手动释放。这里的类对象，是否直到程序结束由系统回收，运行过程中不做释放呢（虽然占据内存也不是很大）？或者再复写`dealloc`方法，从这里做回收（这样似乎也没有必要，如果出现多次crash，就会有反复创建和销毁操作）？
 > **Answer**：这里我不是很明白为什么一定要通过objc_registerClassPair：这个方法来创建类的对象，我这边仅仅是通过alloc init来创建对象的。ARC自己会搞定一切
+
+
 > **Update**：通过上面的回答可以猜测到，Baymax目前的桩类应该是编译期就建立了的，也就是直接继承于`NSObject`创建StubProxy类，然后在做转发的时候，直接往这个类添加Method，归根到底是一样的。它的这个类对象也是不会被释放的，区别只在于是否动态地创建这个类。我之前的考虑是，如果一次crash都没有发生，我就不生成这个桩类。
 
 3）Swizzle`forwardingTargetForSelector`这个方法后，从Log上看，在App启动后，会有多次的转发，我猜测这个现象与上面那个问题一致，这是系统的一些私有类，产生的异常系统自己处理掉了，那么这种情况Baymax目前是怎么处理的（而且Swizzle后会造成XCTest无法正常进行测试）？Log如下：
