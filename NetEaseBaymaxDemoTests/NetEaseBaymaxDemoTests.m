@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "NSObject+Baymax.h"
+#import "ViewController.h"
 
 @interface NetEaseBaymaxDemoTests : XCTestCase
 @end
@@ -22,10 +23,13 @@
     [super tearDown];
 }
 
-- (void)Disable_testUnrecognizeSelector {
+- (void)testUnrecognizeSelector {
     //1、Test unrecognize selector
-    NSObject *obj = [NSObject new];
-    XCTAssertNoThrow([obj performSelector:@selector(crash)]);
+    // This won't throw exception
+    XCTAssertNoThrow([[ViewController new] performSelector:@selector(crash)]);
+    
+    // This will throw a exception
+    XCTAssertThrows([[NSObject new] performSelector:@selector(crash)]);
 }
 
 - (void)testKVO {
