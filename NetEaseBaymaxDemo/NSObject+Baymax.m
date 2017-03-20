@@ -15,32 +15,7 @@ char * const kBaymaxProtectorName = "kBaymaxProtector";
 void baymaxProtected(id self, SEL sel) {
 }
 
-@implementation NSObject (Baymax)
-
-// MARK: Life cycle
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-//        [self swizzleInstanceMethodWithOriginSel:@selector(forwardingTargetForSelector:) swizzledSel:@selector(baymax_forwardingTargetForSelector:)];
-        [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
-        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
-        [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
-    });
-}
-
-- (void)baymax_dealloc {
-    for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
-        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath context:nil];
-    }
-    
-    objc_setAssociatedObject(self, @selector(kvoDelegate), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (self.didRegisteredNotificationCenter) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
-    
-    [self baymax_dealloc];
-}
+@implementation NSObject (BaymaxUtil)
 
 // MARK: Util
 + (void)swizzleClassMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel {
@@ -72,9 +47,7 @@ void baymaxProtected(id self, SEL sel) {
     }
 }
 
-// MARK: Unrecognize Selector Protected
-- (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
-    NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
++ (Class)addMethodToStubClass:(SEL)aSelector {
     Class baymaxProtector = objc_getClass(kBaymaxProtectorName);
     
     if (!baymaxProtector) {
@@ -83,6 +56,70 @@ void baymaxProtected(id self, SEL sel) {
     }
     
     class_addMethod(baymaxProtector, aSelector, (IMP)baymaxProtected, "v@:");
+    return baymaxProtector;
+}
+
++ (BOOL)isClassMethodOverride:(Class)cls selector:(SEL)selector {
+    Method selfMethod = class_getClassMethod(cls, selector);
+    Method superMethod = class_getClassMethod(class_getSuperclass(cls), selector);
+    
+    return selfMethod != superMethod;
+}
+
++ (BOOL)isInstanceMethodOverride:(Class)cls selector:(SEL)selector {
+    Method selfMethod = class_getInstanceMethod(cls, selector);
+    Method superMethod = class_getInstanceMethod(class_getSuperclass(cls), selector);
+    
+    return selfMethod != superMethod;
+}
+
++ (BOOL)isMainBundleClass:(Class)cls {
+    return cls && [[NSBundle bundleForClass:cls] isEqual:[NSBundle mainBundle]];
+}
+
+@end
+
+@implementation NSObject (Baymax)
+
+// MARK: Life cycle
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self swizzleInstanceMethodWithOriginSel:@selector(forwardingTargetForSelector:) swizzledSel:@selector(baymax_forwardingTargetForSelector:)];
+        
+        [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
+        
+        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
+        
+        [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
+    });
+}
+
+- (void)baymax_dealloc {
+    for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
+        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath context:nil];
+    }
+    
+    objc_setAssociatedObject(self, @selector(kvoDelegate), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    if (self.didRegisteredNotificationCenter) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    
+    [self baymax_dealloc];
+}
+
+// MARK: Unrecognize Selector Protected
+- (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
+    // Ignore class which has overrided forwardInvocation method and System classes
+    if ([NSObject isInstanceMethodOverride:[self class] selector:@selector(forwardInvocation:)] ||
+        ![NSObject isMainBundleClass:[self class]]) {
+        return [self baymax_forwardingTargetForSelector:aSelector];
+    }
+    
+    NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
+    
+    Class baymaxProtector = [NSObject addMethodToStubClass:aSelector];
     
     if (!self.baymax) {
         self.baymax = [baymaxProtector new];

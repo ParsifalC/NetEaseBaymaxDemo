@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "CPKVODelegate.h"
 
+@interface NSObject (BaymaxUtil)
+
++ (void)swizzleClassMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel;
++ (void)swizzleInstanceMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel;
+
+@end
+
 @interface NSObject (Baymax)
 
 @property (strong, nonatomic, readonly) id baymax;
 @property (strong, nonatomic, readonly) CPKVODelegate *kvoDelegate;
 @property (assign, nonatomic) BOOL didRegisteredNotificationCenter;
-
-+ (void)swizzleClassMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel;
-+ (void)swizzleInstanceMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel;
 
 @end
