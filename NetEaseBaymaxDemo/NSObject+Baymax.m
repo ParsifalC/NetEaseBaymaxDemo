@@ -59,18 +59,11 @@ void baymaxProtected(id self, SEL sel) {
     return baymaxProtector;
 }
 
-+ (BOOL)isClassMethodOverride:(Class)cls selector:(SEL)selector {
-    Method selfMethod = class_getClassMethod(cls, selector);
-    Method superMethod = class_getClassMethod(class_getSuperclass(cls), selector);
+- (BOOL)isMethodOverride:(Class)cls selector:(SEL)sel {
+    IMP clsIMP = class_getMethodImplementation(cls, sel);
+    IMP superClsIMP = class_getMethodImplementation([cls superclass], sel);
     
-    return selfMethod != superMethod;
-}
-
-+ (BOOL)isInstanceMethodOverride:(Class)cls selector:(SEL)selector {
-    Method selfMethod = class_getInstanceMethod(cls, selector);
-    Method superMethod = class_getInstanceMethod(class_getSuperclass(cls), selector);
-    
-    return selfMethod != superMethod;
+    return clsIMP != superClsIMP;
 }
 
 + (BOOL)isMainBundleClass:(Class)cls {
@@ -112,7 +105,7 @@ void baymaxProtected(id self, SEL sel) {
 // MARK: Unrecognize Selector Protected
 - (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
     // Ignore class which has overrided forwardInvocation method and System classes
-    if ([NSObject isInstanceMethodOverride:[self class] selector:@selector(forwardInvocation:)] ||
+    if ([self isMethodOverride:[self class] selector:@selector(forwardInvocation:)]||
         ![NSObject isMainBundleClass:[self class]]) {
         return [self baymax_forwardingTargetForSelector:aSelector];
     }
