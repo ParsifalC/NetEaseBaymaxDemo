@@ -8,6 +8,7 @@
 
 #import "NSString+Baymax.h"
 #import "NSObject+Baymax.h"
+#import <UIKit/UIKit.h>
 
 @implementation NSString (Baymax)
 
@@ -15,6 +16,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self swizzleInstanceMethodWithOriginSel:@selector(substringFromIndex:) swizzledSel:@selector(baymax_substringFromIndex:)];
+        [self swizzleInstanceMethodWithOriginSel:@selector(containsString:) swizzledSel:@selector(baymax_containsString:)];
     });
 }
 
@@ -24,6 +26,19 @@
     } else {
         NSLog(@"BaymaxProtector:Out Of Length");
         return self;
+    }
+}
+
+- (BOOL)baymax_containsString:(NSString *)str {
+    if (str.length == 0) {
+        return NO;
+    }
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        NSRange range = [self rangeOfString:str];
+        return range.length != 0;
+    } else {
+        return [self baymax_containsString:str];
     }
 }
 
