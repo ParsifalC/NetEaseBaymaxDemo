@@ -22,6 +22,7 @@
 		90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */; };
 		90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */; };
 		90A4C6911E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6901E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m */; };
+		90D139461E84F272008EB008 /* UIView+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D139451E84F272008EB008 /* UIView+Baymax.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		90A4C68E1E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetEaseBaymaxDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A4C6901E76C72A00D3F0CF /* NetEaseBaymaxDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetEaseBaymaxDemoTests.m; sourceTree = "<group>"; };
 		90A4C6921E76C72A00D3F0CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90D139441E84F272008EB008 /* UIView+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Baymax.h"; sourceTree = "<group>"; };
+		90D139451E84F272008EB008 /* UIView+Baymax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Baymax.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				90A4C6821E7697E500D3F0CF /* NSArray+Baymax.m */,
 				90A4C6871E76BE6B00D3F0CF /* NSString+Baymax.h */,
 				90A4C6881E76BE6B00D3F0CF /* NSString+Baymax.m */,
+				90D139441E84F272008EB008 /* UIView+Baymax.h */,
+				90D139451E84F272008EB008 /* UIView+Baymax.m */,
 			);
 			name = Baymax;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */,
 				90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */,
 				90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */,
+				90D139461E84F272008EB008 /* UIView+Baymax.m in Sources */,
 				90A4C67C1E76749700D3F0CF /* CPStubTarget.m in Sources */,
 				901BE8FC1E740F54002F2798 /* ViewController.m in Sources */,
 				901BE90D1E742114002F2798 /* NSObject+Baymax.m in Sources */,

@@ -106,6 +106,9 @@
     XCTAssertNoThrow([astr substringFromIndex:astr.length]);
 }
 
+- (void)disable_testUIOnMainThread {
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
     }];
