@@ -13,11 +13,10 @@
 		901BE8FF1E740F54002F2798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 901BE8FD1E740F54002F2798 /* Main.storyboard */; };
 		901BE9011E740F54002F2798 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 901BE9001E740F54002F2798 /* Assets.xcassets */; };
 		901BE9041E740F54002F2798 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 901BE9021E740F54002F2798 /* LaunchScreen.storyboard */; };
-		901BE90D1E742114002F2798 /* NSObject+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE90C1E742114002F2798 /* NSObject+Baymax.m */; };
+		901BE90D1E742114002F2798 /* NSObject+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 901BE90C1E742114002F2798 /* NSObject+Baymax.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		908109181E8E27ED00EF9535 /* CPZombieObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109171E8E27ED00EF9535 /* CPZombieObject.m */; };
 		9081091E1E8E32C500EF9535 /* ZombieTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9081091D1E8E32C500EF9535 /* ZombieTest.m */; };
 		908109211E8E4EE100EF9535 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109201E8E4EE100EF9535 /* NSObject+Runtime.m */; };
-		908109241E8E4FCD00EF9535 /* NSObject+Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109231E8E4FCD00EF9535 /* NSObject+Zombie.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		90A4C66D1E75327D00D3F0CF /* CPKVODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */; };
 		90A4C6761E7664E900D3F0CF /* NSNotificationCenter+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6751E7664E900D3F0CF /* NSNotificationCenter+Baymax.m */; };
 		90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6781E7671DE00D3F0CF /* NSTimer+Baymax.m */; };
@@ -58,8 +57,6 @@
 		9081091D1E8E32C500EF9535 /* ZombieTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZombieTest.m; sourceTree = "<group>"; };
 		9081091F1E8E4EE100EF9535 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
 		908109201E8E4EE100EF9535 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
-		908109221E8E4FCD00EF9535 /* NSObject+Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Zombie.h"; sourceTree = "<group>"; };
-		908109231E8E4FCD00EF9535 /* NSObject+Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Zombie.m"; sourceTree = "<group>"; };
 		90A4C66B1E75327D00D3F0CF /* CPKVODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPKVODelegate.h; sourceTree = "<group>"; };
 		90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPKVODelegate.m; sourceTree = "<group>"; };
 		90A4C6741E7664E900D3F0CF /* NSNotificationCenter+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Baymax.h"; sourceTree = "<group>"; };
@@ -169,8 +166,6 @@
 				90D139451E84F272008EB008 /* UIView+Baymax.m */,
 				908109161E8E27ED00EF9535 /* CPZombieObject.h */,
 				908109171E8E27ED00EF9535 /* CPZombieObject.m */,
-				908109221E8E4FCD00EF9535 /* NSObject+Zombie.h */,
-				908109231E8E4FCD00EF9535 /* NSObject+Zombie.m */,
 			);
 			name = Baymax;
 			sourceTree = "<group>";
@@ -293,7 +288,6 @@
 				90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */,
 				90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */,
 				90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */,
-				908109241E8E4FCD00EF9535 /* NSObject+Zombie.m in Sources */,
 				90D139461E84F272008EB008 /* UIView+Baymax.m in Sources */,
 				90A4C67C1E76749700D3F0CF /* CPStubTarget.m in Sources */,
 				9081091E1E8E32C500EF9535 /* ZombieTest.m in Sources */,

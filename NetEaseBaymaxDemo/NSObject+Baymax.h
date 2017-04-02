@@ -12,8 +12,10 @@
 
 @interface NSObject (Baymax)
 
-@property (strong, nonatomic, readonly) id baymax;
-@property (strong, nonatomic, readonly) CPKVODelegate *kvoDelegate;
+@property (retain, nonatomic, readonly) id baymax;
+@property (retain, nonatomic, readonly) CPKVODelegate *kvoDelegate;
 @property (assign, nonatomic) BOOL didRegisteredNotificationCenter;
+@property (assign, nonatomic) BOOL needBadAccessProtector;
+@property (copy, nonatomic) NSString *originalClassName;
 
 @end
