@@ -22,6 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self changeTitle];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(0, 0, 100, 100);
+    [btn setTitle:@"YOYOYOYO" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(didReceivedNoti:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
 - (void)changeTitle {

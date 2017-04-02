@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ZombieTest.h"
 
 @interface AppDelegate ()
 @end
@@ -15,6 +16,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    __unsafe_unretained ZombieTest *zombieObj;
+    
+    {
+        zombieObj = [ZombieTest new];
+    }
+    
+    [zombieObj performSelector:@selector(crash)];
+    
     return YES;
 }
 

@@ -8,69 +8,7 @@
 
 #import "NSObject+Baymax.h"
 #import <objc/runtime.h>
-#import "CPKVODelegate.h"
-
-char * const kBaymaxProtectorName = "kBaymaxProtector";
-
-void baymaxProtected(id self, SEL sel) {
-}
-
-@implementation NSObject (BaymaxUtil)
-
-// MARK: Util
-+ (void)swizzleClassMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel {
-    Class cls = object_getClass(self);
-    Method originAddObserverMethod = class_getClassMethod(cls, oriSel);
-    Method swizzledAddObserverMethod = class_getClassMethod(cls, swiSel);
-    
-    [self swizzleMethodWithOriginSel:oriSel oriMethod:originAddObserverMethod swizzledSel:swiSel swizzledMethod:swizzledAddObserverMethod class:cls];
-}
-
-+ (void)swizzleInstanceMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel {
-    Method originAddObserverMethod = class_getInstanceMethod(self, oriSel);
-    Method swizzledAddObserverMethod = class_getInstanceMethod(self, swiSel);
-    
-    [self swizzleMethodWithOriginSel:oriSel oriMethod:originAddObserverMethod swizzledSel:swiSel swizzledMethod:swizzledAddObserverMethod class:self];
-}
-
-+ (void)swizzleMethodWithOriginSel:(SEL)oriSel
-                         oriMethod:(Method)oriMethod
-                       swizzledSel:(SEL)swizzledSel
-                    swizzledMethod:(Method)swizzledMethod
-                             class:(Class)cls {
-    BOOL didAddMethod = class_addMethod(cls, oriSel, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-    
-    if (didAddMethod) {
-        class_replaceMethod(cls, swizzledSel, method_getImplementation(oriMethod), method_getTypeEncoding(oriMethod));
-    } else {
-        method_exchangeImplementations(oriMethod, swizzledMethod);
-    }
-}
-
-+ (Class)addMethodToStubClass:(SEL)aSelector {
-    Class baymaxProtector = objc_getClass(kBaymaxProtectorName);
-    
-    if (!baymaxProtector) {
-        baymaxProtector = objc_allocateClassPair([NSObject class], kBaymaxProtectorName, sizeof([NSObject class]));
-        objc_registerClassPair(baymaxProtector);
-    }
-    
-    class_addMethod(baymaxProtector, aSelector, (IMP)baymaxProtected, "v@:");
-    return baymaxProtector;
-}
-
-- (BOOL)isMethodOverride:(Class)cls selector:(SEL)sel {
-    IMP clsIMP = class_getMethodImplementation(cls, sel);
-    IMP superClsIMP = class_getMethodImplementation([cls superclass], sel);
-    
-    return clsIMP != superClsIMP;
-}
-
-+ (BOOL)isMainBundleClass:(Class)cls {
-    return cls && [[NSBundle bundleForClass:cls] isEqual:[NSBundle mainBundle]];
-}
-
-@end
+#import "NSObject+Zombie.h"
 
 @implementation NSObject (Baymax)
 
@@ -79,27 +17,37 @@ void baymaxProtected(id self, SEL sel) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self swizzleInstanceMethodWithOriginSel:@selector(forwardingTargetForSelector:) swizzledSel:@selector(baymax_forwardingTargetForSelector:)];
+//
+//        [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
+//        
+//        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
         
-        [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
-        
-        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
-        
-        [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
+//        [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
     });
 }
 
-- (void)baymax_dealloc {
-    for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
-        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath context:nil];
-    }
-    
-    objc_setAssociatedObject(self, @selector(kvoDelegate), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    if (self.didRegisteredNotificationCenter) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
-    
-    [self baymax_dealloc];
+//- (void)baymax_dealloc {
+//    for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
+//        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath context:nil];
+//    }
+//    
+//    objc_setAssociatedObject(self, @selector(kvoDelegate), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    
+//    // Protect NSNotificationCenter crash
+//    if (self.didRegisteredNotificationCenter) {
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    }
+//    
+//    [self baymax_dealloc];
+//}
+
+// MARK: Getter & Setter
+- (void)setBaymax:(id)baymax {
+    objc_setAssociatedObject(self, @selector(baymax), baymax, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id)baymax {
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 // MARK: Unrecognize Selector Protected
@@ -110,7 +58,11 @@ void baymaxProtected(id self, SEL sel) {
         return [self baymax_forwardingTargetForSelector:aSelector];
     }
     
-    NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
+    if (self.originalClassName.length) {
+        NSLog(@"Baymax Protect:message sent to deallocated instance:%@ %p", self.originalClassName, self);
+    } else {
+        NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
+    }
     
     Class baymaxProtector = [NSObject addMethodToStubClass:aSelector];
     
@@ -119,14 +71,6 @@ void baymaxProtected(id self, SEL sel) {
     }
     
     return self.baymax;
-}
-
-- (void)setBaymax:(id)baymax {
-    objc_setAssociatedObject(self, @selector(baymax), baymax, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (id)baymax {
-    return objc_getAssociatedObject(self, _cmd);
 }
 
 // MARK: KVO Protected
@@ -215,7 +159,7 @@ void baymaxProtected(id self, SEL sel) {
 
 // MARK: NSNotification Protected
 - (void)setDidRegisteredNotificationCenter:(BOOL)didRegisteredNotificationCenter {
-    objc_setAssociatedObject(self, @selector(didRegisteredNotificationCenter), @(didRegisteredNotificationCenter), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(didRegisteredNotificationCenter), @(didRegisteredNotificationCenter), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)didRegisteredNotificationCenter {

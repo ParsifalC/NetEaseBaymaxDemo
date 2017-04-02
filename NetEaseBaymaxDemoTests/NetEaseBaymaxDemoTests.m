@@ -91,7 +91,7 @@
     NSArray *aArray = @[];
     XCTAssertNoThrow(aArray[2]);
     
-    //5-3:
+    //5-3:__NSSingleObjectArrayI
     NSArray *bArray = @[@1];
     XCTAssertNoThrow(bArray[2]);
     
@@ -104,6 +104,16 @@
     //6、Test String crash
     NSString *astr = @"string";
     XCTAssertNoThrow([astr substringFromIndex:astr.length]);
+}
+
+- (void)disable_testBadAccess {
+    //7 Test bad access crash
+    NSObject * __unsafe_unretained obj = nil;
+    {
+        obj = [NSObject new];
+    }
+    
+    XCTAssertNoThrow([obj class]);
 }
 
 - (void)disable_testUIOnMainThread {
