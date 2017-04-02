@@ -108,6 +108,8 @@
         NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
     }
     
+    NSLog(@"%@", [NSThread callStackSymbols]);
+    
     Class baymaxProtector = [NSObject addMethodToStubClass:aSelector];
     
     if (!self.baymax) {
