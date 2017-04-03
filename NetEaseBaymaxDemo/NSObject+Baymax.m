@@ -9,6 +9,7 @@
 #import "NSObject+Baymax.h"
 #import <objc/runtime.h>
 #import "CPZombieObject.h"
+#import "NSObject+Zombie.h"
 
 @implementation NSObject (Baymax)
 
@@ -22,20 +23,8 @@
         
         [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
         
-        [self swizzleClassMethodWithOriginSel:@selector(allocWithZone:) swizzledSel:@selector(baymax_allocWithZone:)];
-        
-        [self swizzleInstanceMethodWithOriginSel:@selector(dealloc) swizzledSel:@selector(baymax_dealloc)];
+        [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
     });
-}
-
-+ (instancetype)baymax_allocWithZone:(struct _NSZone *)zone {
-    NSObject *obj = [self baymax_allocWithZone:zone];
-    
-    if ([obj isMemberOfClass:NSClassFromString(@"ZombieTest")]) {
-        obj.needBadAccessProtector = YES;
-    }
-    
-    return obj;
 }
 
 - (void)baymax_dealloc {
@@ -51,14 +40,7 @@
     }
     
     // Protect Bad Access crash
-    if (self.needBadAccessProtector) {
-        // TODO: Memory Management.Need Cache Zombie Objects And Free Them At The Right Time.
-        objc_destructInstance(self);
-        object_setClass(self, [CPZombieObject class]);
-        self.originalClassName = NSStringFromClass([self class]);
-    } else {
-        [self baymax_dealloc];
-    }
+    [self zombieDelloc:self];
 }
 
 // MARK: Getter & Setter
@@ -68,22 +50,6 @@
 
 - (id)baymax {
     return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setOriginalClassName:(NSString *)originalClassName {
-    objc_setAssociatedObject(self, @selector(originalClassName), originalClassName, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSString *)originalClassName {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setNeedBadAccessProtector:(BOOL)needBadAccessProtector {
-    objc_setAssociatedObject(self, @selector(needBadAccessProtector), @(needBadAccessProtector), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)needBadAccessProtector {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setKvoDelegate:(CPKVODelegate *)kvoDelegate {
@@ -98,23 +64,18 @@
 - (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
     // Ignore class which has overrided forwardInvocation method and System classes
     if ([self isMethodOverride:[self class] selector:@selector(forwardInvocation:)] ||
-        ![NSObject isMainBundleClass:[self class]]) {
+        ![NSObject isMainBundleClass:[self class]] ||
+        [self isKindOfClass:[CPZombieObject class]]) {
         return [self baymax_forwardingTargetForSelector:aSelector];
     }
     
-    if (self.originalClassName.length) {
-        NSLog(@"Baymax Protect:message sent to deallocated instance:%@ %p", self.originalClassName, self);
-    } else {
-        NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
-    }
-    
+    NSLog(@"catch unrecognize selector crash %@ %@", self, NSStringFromSelector(aSelector));
     NSLog(@"%@", [NSThread callStackSymbols]);
     
     Class baymaxProtector = [NSObject addMethodToStubClass:aSelector];
     
     if (!self.baymax) {
         self.baymax = [baymaxProtector new];
-        [self.baymax release];
     }
     
     return self.baymax;
@@ -132,7 +93,6 @@
     
     if (!self.kvoDelegate) {
         self.kvoDelegate = [CPKVODelegate new];
-        [self.kvoDelegate release];
     }
     
     CPKVODelegate *kvoDelegate = self.kvoDelegate;
@@ -161,11 +121,7 @@
         [infoArray addObject:kvoInfo];
         kvoInfoMaps[keyPath] = infoArray;
         [self baymax_addObserver:kvoDelegate forKeyPath:keyPath options:options context:context];
-        
-        [infoArray release];
     }
-    
-    [kvoInfo release];
 }
 
 - (void)baymax_removeObserver:(NSObject *)observer
@@ -195,8 +151,6 @@
             [kvoInfoMaps removeObjectForKey:keyPath];
             [self baymax_removeObserver:kvoDelegate forKeyPath:keyPath context:context];
         }
-        
-        [matchedInfos release];
     } else {
         NSLog(@"BaymaxKVOProtector:Obc has removed already!");
         [kvoInfoMaps removeObjectForKey:keyPath];
