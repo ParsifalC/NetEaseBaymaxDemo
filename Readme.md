@@ -1,7 +1,7 @@
 ## TODO
 - [x] Unit Test
-- [ ] Bad Access 防护
-- [ ] UI Not On Main Thread 防护
+- [x] Bad Access 防护
+- [x] UI Not On Main Thread 防护
 - [ ] Refactor Code
 
 ## 扯扯闲话
