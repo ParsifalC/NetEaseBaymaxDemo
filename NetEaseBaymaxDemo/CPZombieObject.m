@@ -14,7 +14,7 @@
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     NSLog(@"Baymax Protector:message sent to deallocated instance:%@ %p", self.originalClassName, self);
-    NSLog(@"%@", [NSThread callStackSymbols]);
+//    NSLog(@"%@", [NSThread callStackSymbols]);
 
     Class baymaxProtector = [NSObject addMethodToStubClass:aSelector];
     

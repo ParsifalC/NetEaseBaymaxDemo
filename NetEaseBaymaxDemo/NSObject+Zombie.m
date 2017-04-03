@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "NSObject+Baymax.h"
 #import "CPZombieObject.h"
+#import "CPCrashProtector.h"
 
 @implementation NSObject (Zombie)
 
@@ -32,14 +33,15 @@
 }
 
 - (void)zombieDelloc:(id)object {
-    NSObject *obj = (NSObject *)object;
+    NSObject *castObj = (NSObject *)object;
     
     // Protect Bad Access crash
-    if (obj.needBadAccessProtector) {
-        // TODO: Memory Management.Need Cache Zombie Objects And Free Them At The Right Time.
-        objc_destructInstance(obj);
-        object_setClass(obj, [CPZombieObject class]);
-        obj.originalClassName = NSStringFromClass([object class]);
+    if (castObj.needBadAccessProtector) {
+        objc_destructInstance(castObj);
+        object_setClass(castObj, [CPZombieObject class]);
+        castObj.originalClassName = NSStringFromClass([object class]);
+        
+        [[CPCrashProtector sharedInstance] asyncCacheZombie:castObj];
     }
 }
 

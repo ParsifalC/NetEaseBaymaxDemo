@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define kMaxZombieCacheCount 4
+#define kZombieFreedCountPerTime 2
+
 @interface CPCrashProtector : NSObject
+
++ (instancetype)sharedInstance;
+- (void)freeZombie:(NSInteger)count;
+- (void)asyncCacheZombie:(id)zombie;
 
 @end
