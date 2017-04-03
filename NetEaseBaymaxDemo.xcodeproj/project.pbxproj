@@ -17,6 +17,7 @@
 		908109181E8E27ED00EF9535 /* CPZombieObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109171E8E27ED00EF9535 /* CPZombieObject.m */; };
 		9081091E1E8E32C500EF9535 /* ZombieTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9081091D1E8E32C500EF9535 /* ZombieTest.m */; };
 		908109211E8E4EE100EF9535 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109201E8E4EE100EF9535 /* NSObject+Runtime.m */; };
+		9081092A1E927F7000EF9535 /* CPCrashProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 908109291E927F7000EF9535 /* CPCrashProtector.m */; };
 		90A4C66D1E75327D00D3F0CF /* CPKVODelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */; };
 		90A4C6761E7664E900D3F0CF /* NSNotificationCenter+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6751E7664E900D3F0CF /* NSNotificationCenter+Baymax.m */; };
 		90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A4C6781E7671DE00D3F0CF /* NSTimer+Baymax.m */; };
@@ -57,6 +58,8 @@
 		9081091D1E8E32C500EF9535 /* ZombieTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZombieTest.m; sourceTree = "<group>"; };
 		9081091F1E8E4EE100EF9535 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
 		908109201E8E4EE100EF9535 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
+		908109281E927F7000EF9535 /* CPCrashProtector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCrashProtector.h; sourceTree = "<group>"; };
+		908109291E927F7000EF9535 /* CPCrashProtector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCrashProtector.m; sourceTree = "<group>"; };
 		90A4C66B1E75327D00D3F0CF /* CPKVODelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPKVODelegate.h; sourceTree = "<group>"; };
 		90A4C66C1E75327D00D3F0CF /* CPKVODelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPKVODelegate.m; sourceTree = "<group>"; };
 		90A4C6741E7664E900D3F0CF /* NSNotificationCenter+Baymax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Baymax.h"; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				90D139451E84F272008EB008 /* UIView+Baymax.m */,
 				908109161E8E27ED00EF9535 /* CPZombieObject.h */,
 				908109171E8E27ED00EF9535 /* CPZombieObject.m */,
+				908109281E927F7000EF9535 /* CPCrashProtector.h */,
+				908109291E927F7000EF9535 /* CPCrashProtector.m */,
 			);
 			name = Baymax;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				908109181E8E27ED00EF9535 /* CPZombieObject.m in Sources */,
 				90A4C6801E76966D00D3F0CF /* NSMutableArray+Baymax.m in Sources */,
 				90A4C6791E7671DE00D3F0CF /* NSTimer+Baymax.m in Sources */,
+				9081092A1E927F7000EF9535 /* CPCrashProtector.m in Sources */,
 				90A4C6831E7697E500D3F0CF /* NSArray+Baymax.m in Sources */,
 				90A4C6891E76BE6B00D3F0CF /* NSString+Baymax.m in Sources */,
 				90D139461E84F272008EB008 /* UIView+Baymax.m in Sources */,
