@@ -40,7 +40,11 @@
     }
     
     // Protect Bad Access crash
-    [self zombieDelloc:self];
+    if (self.needBadAccessProtector) {
+        [self baymax_zombieDealloc];
+    } else {
+        [self baymax_dealloc];
+    }
 }
 
 // MARK: Getter & Setter

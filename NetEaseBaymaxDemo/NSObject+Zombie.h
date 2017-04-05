@@ -13,6 +13,6 @@
 @property (copy, nonatomic) NSString *originalClassName;
 @property (assign, nonatomic) BOOL needBadAccessProtector;
 
-- (void)zombieDelloc:(id)object;
+- (void)baymax_zombieDealloc;
 
 @end

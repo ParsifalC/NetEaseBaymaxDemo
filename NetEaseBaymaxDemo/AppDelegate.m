@@ -16,13 +16,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    __unsafe_unretained ZombieTest *zombieObj;
-    
-    {
-        zombieObj = [ZombieTest new];
+    for (int i = 0; i < 10; i++) {
+        __unsafe_unretained ZombieTest *zombieObj;
+        
+        {
+            zombieObj = [ZombieTest new];
+        }
+        
+        [zombieObj performSelector:@selector(crash)];
     }
-    
-    [zombieObj performSelector:@selector(crash)];
     
     return YES;
 }

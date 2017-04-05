@@ -10,6 +10,9 @@
 #import "CPKVODelegate.h"
 #import "NSObject+Runtime.h"
 
+#define kMaxZombieCacheCount 4
+#define kZombieFreedCountPerTime 2
+
 @interface NSObject (Baymax)
 
 @property (retain, nonatomic) id baymax;
