@@ -33,7 +33,6 @@ static void freeZombie(NSInteger count) {
                         Class objCls = object_getClass(obj);
                         Method deallocMethod = class_getInstanceMethod(objCls, NSSelectorFromString(@"baymax_dealloc"));
                         void (*originalDealloc)(__unsafe_unretained id, SEL) = (__typeof__(originalDealloc))method_getImplementation(deallocMethod);
-                        NSLog(@"%@ %p rc:%@", obj, originalDealloc, @(CFGetRetainCount((__bridge CFTypeRef)(obj))));
                         originalDealloc(obj, NSSelectorFromString(@"dealloc"));
                     } @catch (NSException *exception) {
                         NSLog(@"Baymax Error!!!!!!!Exception: %@", exception);
