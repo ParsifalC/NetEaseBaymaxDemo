@@ -40,8 +40,11 @@
     XCTAssertNoThrow([avc removeObserver:self forKeyPath:@"title" context:nil]);
 
     //2-2:message sent to deallocated instance
-    UIViewController *bvc = [UIViewController new];
-    [bvc addObserver:avc forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    {
+        UIViewController *bvc = [UIViewController new];
+        [avc addObserver:bvc forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    avc.title = @"YOYO";
 
     //2-3:deallocated while key value observers were still registered with it.
     UIViewController *cvc = [UIViewController new];

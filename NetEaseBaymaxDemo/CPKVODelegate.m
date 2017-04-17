@@ -31,17 +31,14 @@
                               context:(void *)context {
     NSMutableDictionary *kvoInfoMaps = self.kvoInfoMaps;
     NSMutableArray *infoArray = kvoInfoMaps[keyPath];
-    NSMutableArray *invalidInfos = [NSMutableArray new];
     
     for (CPKVOInfo *info in infoArray) {
         if (!info.observer) {
-            [invalidInfos addObject:info];
+            [self removeObserver:info.observer forKeyPath:keyPath];
         } else {
             [info.observer observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
     }
-    
-    [infoArray removeObjectsInArray:invalidInfos];
 }
 
 - (NSMutableDictionary *)kvoInfoMaps {

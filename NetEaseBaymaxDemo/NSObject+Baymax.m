@@ -21,7 +21,7 @@
 
         [self swizzleInstanceMethodWithOriginSel:@selector(addObserver:forKeyPath:options:context:) swizzledSel:@selector(baymax_addObserver:forKeyPath:options:context:)];
         
-        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:context:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:context:)];
+        [self swizzleInstanceMethodWithOriginSel:@selector(removeObserver:forKeyPath:) swizzledSel:@selector(baymax_removeObserver:forKeyPath:)];
         
         [self swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(baymax_dealloc)];
     });
@@ -29,8 +29,14 @@
 
 - (void)baymax_dealloc {
     for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
-        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath context:nil];
+        NSArray *infoArray = self.kvoDelegate.kvoInfoMaps[keypath];
+        for (CPKVOInfo *info in infoArray) {
+            [self removeObserver:info.observer forKeyPath:keypath];
+        }
     }
+    
+    [self.kvoDelegate.kvoInfoMaps removeAllObjects];
+    self.kvoDelegate.kvoInfoMaps = nil;
     
     objc_setAssociatedObject(self, @selector(kvoDelegate), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -129,9 +135,8 @@
 }
 
 - (void)baymax_removeObserver:(NSObject *)observer
-                   forKeyPath:(NSString *)keyPath
-                      context:(void *)context {
-    if (keyPath.length == 0 || !observer) {
+                   forKeyPath:(NSString *)keyPath {
+    if (keyPath.length == 0) {
         NSLog(@"Remove Observer Error:Check KVO KeyPath OR Observer");
         return;
     }
@@ -153,7 +158,7 @@
         
         if (infoArray.count == 0) {
             [kvoInfoMaps removeObjectForKey:keyPath];
-            [self baymax_removeObserver:kvoDelegate forKeyPath:keyPath context:context];
+            [self baymax_removeObserver:kvoDelegate forKeyPath:keyPath];
         }
     } else {
         NSLog(@"BaymaxKVOProtector:Obc has removed already!");
