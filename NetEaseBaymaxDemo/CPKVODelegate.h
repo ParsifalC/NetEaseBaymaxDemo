@@ -14,4 +14,5 @@
 
 @interface CPKVODelegate : NSObject
 @property (strong, nonatomic) NSMutableDictionary *kvoInfoMaps;
+@property (weak, nonatomic) id weakObservedObject;
 @end

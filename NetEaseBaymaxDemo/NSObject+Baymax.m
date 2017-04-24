@@ -28,11 +28,11 @@
 }
 
 - (void)baymax_dealloc {
-    for (NSString *keypath in self.kvoDelegate.kvoInfoMaps) {
-        NSArray *infoArray = self.kvoDelegate.kvoInfoMaps[keypath];
-        for (CPKVOInfo *info in infoArray) {
-            [self removeObserver:info.observer forKeyPath:keypath];
-        }
+    NSArray *kvoInfoMaps = [self.kvoDelegate.kvoInfoMaps mutableCopy];
+    
+    for (NSString *keypath in kvoInfoMaps) {
+        //Call original 'removeObserver:forKeyPath'
+        [self baymax_removeObserver:self.kvoDelegate forKeyPath:keypath];
     }
     
     [self.kvoDelegate.kvoInfoMaps removeAllObjects];
@@ -96,6 +96,13 @@
                 forKeyPath:(NSString *)keyPath
                    options:(NSKeyValueObservingOptions)options
                    context:(void *)context {
+    if ([observer isKindOfClass:[CPKVODelegate class]]) {
+        return [self baymax_addObserver:observer
+                             forKeyPath:keyPath
+                                options:options
+                                context:context];
+    }
+    
     if (keyPath.length == 0 || !observer) {
         NSLog(@"Add Observer Error:Check KVO KeyPath OR Observer");
         return;
@@ -103,6 +110,7 @@
     
     if (!self.kvoDelegate) {
         self.kvoDelegate = [CPKVODelegate new];
+        self.kvoDelegate.weakObservedObject = self;
     }
     
     CPKVODelegate *kvoDelegate = self.kvoDelegate;
@@ -136,11 +144,21 @@
 
 - (void)baymax_removeObserver:(NSObject *)observer
                    forKeyPath:(NSString *)keyPath {
+    if ([observer isKindOfClass:[CPKVODelegate class]]) {
+        return [self baymax_removeObserver:observer
+                                forKeyPath:keyPath];
+    }
+    
     if (keyPath.length == 0) {
         NSLog(@"Remove Observer Error:Check KVO KeyPath OR Observer");
         return;
     }
     
+    if (!self.kvoDelegate) {
+        self.kvoDelegate = [CPKVODelegate new];
+        self.kvoDelegate.weakObservedObject = self;
+    }
+
     CPKVODelegate *kvoDelegate = self.kvoDelegate;
     NSMutableDictionary *kvoInfoMaps = kvoDelegate.kvoInfoMaps;
     NSMutableArray *infoArray = kvoInfoMaps[keyPath];

@@ -31,13 +31,26 @@
                               context:(void *)context {
     NSMutableDictionary *kvoInfoMaps = self.kvoInfoMaps;
     NSMutableArray *infoArray = kvoInfoMaps[keyPath];
+    NSMutableArray *invalidArray = [NSMutableArray new];
     
     for (CPKVOInfo *info in infoArray) {
+        //由于info中对real observer是弱引用
+        //所以这里如果observer释放之后 info中的observer会被置为nil
         if (!info.observer) {
-            [self removeObserver:info.observer forKeyPath:keyPath];
+            [invalidArray addObject:info];
         } else {
-            [info.observer observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+            [info.observer observeValueForKeyPath:keyPath
+                                         ofObject:object
+                                           change:change
+                                          context:context];
         }
+    }
+    
+    [infoArray removeObjectsInArray:invalidArray];
+    
+    if (!infoArray.count) {
+        [self.weakObservedObject removeObserver:self forKeyPath:keyPath];
+        kvoInfoMaps[keyPath] = nil;
     }
 }
 
