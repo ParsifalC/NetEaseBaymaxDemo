@@ -9,6 +9,14 @@
 #import <XCTest/XCTest.h>
 #import "NSObject+Baymax.h"
 #import "ViewController.h"
+#import "ZombieTest.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wnonnull"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+#pragma clang diagnostic ignored "-Warc-unsafe-retained-assign"
 
 @interface NetEaseBaymaxDemoTests : XCTestCase
 @end
@@ -40,15 +48,18 @@
     XCTAssertNoThrow([avc removeObserver:self forKeyPath:@"title" context:nil]);
 
     //2-2:message sent to deallocated instance
-    {
+    for (int i = 0; i < 3; i++) {
         UIViewController *bvc = [UIViewController new];
         [avc addObserver:bvc forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     }
+    
     avc.title = @"YOYO";
 
     //2-3:deallocated while key value observers were still registered with it.
-    UIViewController *cvc = [UIViewController new];
-    [cvc addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    for (int i = 0; i < 3; i++) {
+        UIViewController *cvc = [UIViewController new];
+        [cvc addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 - (void)testNSNotification {
@@ -109,14 +120,17 @@
     XCTAssertNoThrow([astr substringFromIndex:astr.length]);
 }
 
-- (void)disable_testBadAccess {
+- (void)testBadAccess {
     //7 Test bad access crash
-    NSObject * __unsafe_unretained obj = nil;
-    {
-        obj = [NSObject new];
+    for (int i = 0; i < 10; i++) {
+        __unsafe_unretained ZombieTest *zombieObj;
+        
+        {
+            zombieObj = [ZombieTest new];
+        }
+        
+       XCTAssertNoThrow([zombieObj performSelector:@selector(crash)]);
     }
-    
-    XCTAssertNoThrow([obj class]);
 }
 
 - (void)disable_testUIOnMainThread {
@@ -128,3 +142,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

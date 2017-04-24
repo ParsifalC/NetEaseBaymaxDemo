@@ -15,17 +15,7 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    for (int i = 0; i < 10; i++) {
-        __unsafe_unretained ZombieTest *zombieObj;
-        
-        {
-            zombieObj = [ZombieTest new];
-        }
-        
-        [zombieObj performSelector:@selector(crash)];
-    }
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     return YES;
 }
 
