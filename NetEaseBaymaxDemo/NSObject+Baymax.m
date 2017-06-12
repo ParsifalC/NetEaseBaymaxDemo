@@ -154,11 +154,6 @@
         return;
     }
     
-    if (!self.kvoDelegate) {
-        self.kvoDelegate = [CPKVODelegate new];
-        self.kvoDelegate.weakObservedObject = self;
-    }
-
     CPKVODelegate *kvoDelegate = self.kvoDelegate;
     NSMutableDictionary *kvoInfoMaps = kvoDelegate.kvoInfoMaps;
     NSMutableArray *infoArray = kvoInfoMaps[keyPath];
