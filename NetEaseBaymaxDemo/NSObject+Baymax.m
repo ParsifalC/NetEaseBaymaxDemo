@@ -53,23 +53,6 @@
     }
 }
 
-// MARK: Getter & Setter
-- (void)setBaymax:(id)baymax {
-    objc_setAssociatedObject(self, @selector(baymax), baymax, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (id)baymax {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (void)setKvoDelegate:(CPKVODelegate *)kvoDelegate {
-    objc_setAssociatedObject(self, @selector(kvoDelegate), kvoDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (CPKVODelegate *)kvoDelegate {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
 // MARK: Unrecognize Selector Protected
 - (id)baymax_forwardingTargetForSelector:(SEL)aSelector {
     // Ignore class which has overrided forwardInvocation method and System classes
@@ -179,7 +162,23 @@
     }
 }
 
-// MARK: NSNotification Protected
+// MARK: Getter & Setter
+- (void)setBaymax:(id)baymax {
+    objc_setAssociatedObject(self, @selector(baymax), baymax, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id)baymax {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setKvoDelegate:(CPKVODelegate *)kvoDelegate {
+    objc_setAssociatedObject(self, @selector(kvoDelegate), kvoDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CPKVODelegate *)kvoDelegate {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
 - (void)setDidRegisteredNotificationCenter:(BOOL)didRegisteredNotificationCenter {
     objc_setAssociatedObject(self, @selector(didRegisteredNotificationCenter), @(didRegisteredNotificationCenter), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

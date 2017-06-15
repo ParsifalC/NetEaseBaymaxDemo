@@ -29,7 +29,6 @@
     }
 }
 
-
 - (id)baymax_objectAtIndex:(NSUInteger)index {
     if (index < self.count) {
         return [self baymax_objectAtIndex:index];
