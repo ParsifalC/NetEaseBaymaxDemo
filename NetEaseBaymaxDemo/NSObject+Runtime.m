@@ -11,7 +11,8 @@
 
 char * const kBaymaxProtectorName = "kBaymaxProtector";
 
-void baymaxProtected(id self, SEL sel) {
+id baymaxProtected(id self, SEL sel) {
+    return nil;
 }
 
 @implementation NSObject (Runtime)
@@ -55,7 +56,7 @@ void baymaxProtected(id self, SEL sel) {
         objc_registerClassPair(baymaxProtector);
     }
     
-    class_addMethod(baymaxProtector, aSelector, (IMP)baymaxProtected, "v@:");
+    class_addMethod(baymaxProtector, aSelector, (IMP)baymaxProtected, "@@:");
     return baymaxProtector;
 }
 
